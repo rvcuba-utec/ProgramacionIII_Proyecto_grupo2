@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+using namespace std;
 
 #define RESET   "\033[0m"
 #define BOLD    "\033[1m"
@@ -20,55 +21,55 @@
 
 struct Pelicula {
     int id;
-    std::string titulo;
-    std::string año;
-    std::string genero;
-    std::string director;
-    std::string sinopsis;
+    string titulo;
+    string año;
+    string genero;
+    string director;
+    string sinopsis;
 };
 
 void limpiarPantalla() {
-    std::cout << "\033[2J\033[H";
+    cout << "\033[2J\033[H";
 }
 
-void linea(const std::string& color, char simbolo, int largo) {
-    std::cout << color;
-    for (int i = 0; i < largo; ++i) std::cout << simbolo;
-    std::cout << RESET << "\n";
+void linea(const string& color, char simbolo, int largo) {
+    cout << color;
+    for (int i = 0; i < largo; ++i) cout << simbolo;
+    cout << RESET << "\n";
 }
 
 void cabecera() {
-    std::cout << "\n";
+    cout << "\n";
     linea(ROJO, '=', 58);
-    std::cout << BOLD << ROJO << "  ██████╗ " << RESET;
-    std::cout << BOLD << BLANCO << "CINEPERÚ" << RESET;
-    std::cout << BOLD << ROJO << " ██████╗\n" << RESET;
-    std::cout << BOLD << AMARILLO << "       Top 5 Películas Peruanas" << RESET << "\n";
+    cout << BOLD << ROJO << "  ██████╗ " << RESET;
+    cout << BOLD << BLANCO << "CINE" << RESET;
+    cout << BOLD << ROJO << " ██████╗\n" << RESET;
+    cout << BOLD << AMARILLO << "       Top 5 Películas Peruanas" << RESET << "\n";
     linea(ROJO, '=', 58);
-    std::cout << "\n";
+    cout << "\n";
 }
 
 void mostrarPelicula(const Pelicula& p) {
-    std::cout << BG_CARD;
-    std::cout << "  " << BOLD << AMARILLO << "▶  #" << p.id << "  " << RESET;
-    std::cout << BOLD << BLANCO << p.titulo << RESET << "\n";
-    std::cout << RESET;
+    cout << BG_CARD;
+    cout << "  " << BOLD << AMARILLO << "▶  #" << p.id << "  " << RESET;
+    cout << BOLD << BLANCO << p.titulo << RESET << "\n";
+    cout << RESET;
 
-    std::cout << "     " << CYAN << "📅 " << p.año
+    cout << "     " << CYAN  << p.año
               << GRIS   << "  │  "
-              << VERDE  << "🎬 " << p.genero
+              << VERDE  << p.genero
               << GRIS   << "  │  "
-              << MAGENTA<< "🎥 " << p.director
+              << MAGENTA<< p.director
               << RESET  << "\n";
 
-    std::cout << "     " << DIM << GRIS << p.sinopsis << RESET << "\n";
+    cout << "     " << DIM << GRIS << p.sinopsis << RESET << "\n";
     linea(GRIS, '-', 58);
 }
 
 int main() {
     limpiarPantalla();
 
-    std::vector<Pelicula> peliculas = {
+    vector<Pelicula> peliculas = {
         {1,
          "La Paisana Jacinta",
          "1999",
@@ -111,7 +112,7 @@ int main() {
         mostrarPelicula(p);
     }
 
-    std::cout << "\n" << BOLD << AMARILLO << "  🍿  " << peliculas.size()
+    cout << "\n" << BOLD << AMARILLO << peliculas.size()
               << " películas mostradas. ¡A disfrutar!" << RESET << "\n\n";
 
     return 0;
